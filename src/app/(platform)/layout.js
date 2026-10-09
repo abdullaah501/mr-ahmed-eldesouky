@@ -11,7 +11,7 @@ const schemaData = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://mr-ahmed-eldesouky.pixelpulse.online/#website",
+    "@id": "https://mr-ahmed-eldesouky.vercel.app/#website",
     name: "أ. أحمد الدسوقي — منصة الكيمياء",
     alternateName: "منصة أحمد الدسوقي للكيمياء",
     url: "https://mr-ahmed-eldesouky.pixelpulse.online",
@@ -20,12 +20,12 @@ const schemaData = [
     inLanguage: "ar",
     publisher: {
       "@type": "Organization",
-      "@id": "https://mr-ahmed-eldesouky.pixelpulse.online/#organization",
+      "@id": "https://mr-ahmed-eldesouky.vercel.app/#organization",
       name: "أ. أحمد الدسوقي",
       url: "https://mr-ahmed-eldesouky.pixelpulse.online",
       logo: {
         "@type": "ImageObject",
-        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
         width: 400,
         height: 400,
       },
@@ -34,13 +34,13 @@ const schemaData = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://mr-ahmed-eldesouky.pixelpulse.online/#organization",
+    "@id": "https://mr-ahmed-eldesouky.vercel.app/#organization",
     name: "أ. أحمد الدسوقي",
     alternateName: ["منصة أحمد الدسوقي", "أحمد الدسوقي كيمياء"],
     url: "https://mr-ahmed-eldesouky.pixelpulse.online",
     logo: {
       "@type": "ImageObject",
-      url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+      url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
       width: 400,
       height: 400,
     },
@@ -85,7 +85,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
         width: 1200,
         height: 896,
         alt: "أ. أحمد الدسوقي — مدرس كيمياء",
@@ -96,7 +96,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "أ. أحمد الدسوقي | مدرس كيمياء",
     description: "اتعلّم الكيمياء بطريقة أبسط وأوضح.",
-    images: ["https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg"],
+    images: ["https://mr-ahmed-eldesouky.vercel.app/og.jpeg"],
   },
   icons: {
     icon: "/favicon.ico",

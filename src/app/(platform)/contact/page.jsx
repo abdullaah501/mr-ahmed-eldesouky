@@ -8,16 +8,16 @@ export const metadata = {
   description:
     "تواصل مع منصة أ. أحمد الدسوقي مدرس الكيمياء لأي استفسار أو دعم.",
   alternates: {
-    canonical: "https://mr-ahmed-eldesouky.pixelpulse.online/contact",
+    canonical: "https://mr-ahmed-eldesouky.vercel.app/contact",
   },
   openGraph: {
     title: "تواصل معنا | أ. أحمد الدسوقي",
     description: "عندك سؤال؟ تواصل مع منصة أ. أحمد الدسوقي وفريق الدعم.",
-    url: "https://mr-ahmed-eldesouky.pixelpulse.online/contact",
+    url: "https://mr-ahmed-eldesouky.vercel.app/contact",
     siteName: "أ. أحمد الدسوقي — الكيمياء",
     images: [
       {
-        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
         width: 1200,
         height: 896,
         alt: "تواصل معنا — أ. أحمد الدسوقي",
@@ -96,8 +96,8 @@ export default function ContactUsPage() {
               "@type": "EducationalOrganization",
               name: "أ. أحمد الدسوقي — مدرس كيمياء",
               url: "https://mr-ahmed-eldesouky.pixelpulse.online",
-              logo: "https://mr-ahmed-eldesouky.pixelpulse.online/logo.png",
-              image: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+              logo: "https://mr-ahmed-eldesouky.vercel.app/logo.png",
+              image: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
             },
           }),
         }}

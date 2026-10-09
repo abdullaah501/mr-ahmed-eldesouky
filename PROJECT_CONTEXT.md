@@ -476,7 +476,7 @@ Reported symptom: every animation on the homepage frozen (hero orbit/flasks, sta
 
 Build passes. The user supplied `public/og.jpeg` (1200x896, jpeg); it is now the OG/Twitter image everywhere instead of `logo.png`.
 
-- **`src/app/layout.js`**: added site-wide `openGraph` (type/locale/siteName/title/description/images) and `twitter` (`card: summary_large_image`) defaults pointing at `/og.jpeg`. The existing `metadataBase` resolves the relative URL to `https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg`.
+- **`src/app/layout.js`**: added site-wide `openGraph` (type/locale/siteName/title/description/images) and `twitter` (`card: summary_large_image`) defaults pointing at `/og.jpeg`. The existing `metadataBase` resolves the relative URL to `https://mr-ahmed-eldesouky.vercel.app/og.jpeg`.
 - **`src/app/(platform)/page.js`**: homepage metadata now uses `/og.jpeg` with the real 1200x896 dimensions, `url: "/"`, plus a matching `twitter` block.
 - **Scripted sweep** over `src/app/**`: every remaining social-image reference that pointed at the absolute `.../logo.png` (with a declared 1200x630 that never matched the asset) now points at `.../og.jpeg`, and the declared dimensions were corrected to `width: 1200, height: 896`. Files touched: `(auth)/layout.js`, `(auth)/login/page.jsx`, `(auth)/signup/page.jsx`, `(dashboard)/layout.js`, `(dashboard)/dashboard/overview/page.jsx`, `(platform)/layout.js`, `(platform)/contact/page.jsx`, `(userDashboard)/userDashboard/layout.js`. In-page `<Image src="/logo.png">` UI logos were left alone.
 - **Exception**: the schema.org JSON-LD `EducationalOrganization.logo` in `(platform)/contact/page.jsx` still uses `/logo.png` (a square mark is the right asset for `logo`); a sibling `image` property was added with the OG URL instead.
@@ -555,13 +555,13 @@ Clarification on the previous entry: "lighter" meant **more opacity / translucen
 - **`components/ui/Sidenav.jsx`**: the mobile top bar (the mobile counterpart of the navbar) got the identical treatment, including the `supports-[backdrop-filter]` fallback.
 - **Verified in the compiled CSS**: `bg-[#0E666B]/70` compiles to `background-color:#0e666bb3` (70% alpha) and both `backdrop-blur-xl` and `backdrop-saturate-150` emit real `backdrop-filter` declarations - so the effect is not silently dropped.
 - **Contrast note**: the alpha sits at 60-85%, so white text keeps roughly the 6:1+ range it had when the bar was solid; the light `--background` (#F1F7F6) showing through slightly lifts the surface without hurting legibility.
-- **Expectation to set**: the navbar blurs page content scrolling under it, which is where the frosted read is strongest. The footer sits at the page end over a flat background, so it reads as *translucent* more than *frosted* - there is nothing textured behind it to blur.
+- **Expectation to set**: the navbar blurs page content scrolling under it, which is where the frosted read is strongest. The footer sits at the page end over a flat background, so it reads as _translucent_ more than _frosted_ - there is nothing textured behind it to blur.
 - All edits went through `.NET`/Node file APIs (no PowerShell `Set-Content`) to avoid the BOM/mojibake trap; Arabic in the touched files verified intact.
 
 ## Hero Top Padding Removed - Complete
 
 Reported: extra space above the homepage hero content. Build passes.
 
-- **`components/HeroSection.jsx`**: the hero content wrapper used `py-20` (5rem top *and* bottom). Split it to `pb-20 pt-0` (plus the pre-existing `max-md:pb-4`), so the hero no longer pushes the "Bond in Chemistry" eyebrow and headline down. Bottom padding is kept so the headline/CTA still breathe against the bottom edge and the absolutely-positioned scroll cue keeps its room.
+- **`components/HeroSection.jsx`**: the hero content wrapper used `py-20` (5rem top _and_ bottom). Split it to `pb-20 pt-0` (plus the pre-existing `max-md:pb-4`), so the hero no longer pushes the "Bond in Chemistry" eyebrow and headline down. Bottom padding is kept so the headline/CTA still breathe against the bottom edge and the absolutely-positioned scroll cue keeps its room.
 - Checked for other sources of top spacing on the homepage and found none: `(platform)/layout.js` wraps children in a bare `overflow-x-clip` + font container with no padding, and `globals.css` sets no `padding-top`/`scroll-padding` on `html`/`body`. The `py-8`/`py-10` values on the sections below the hero are section rhythm, not top-of-page padding.
 - Note: `lg:min-h-screen` on the same wrapper means the hero fills the viewport height, so on large screens the content is now vertically centred rather than centred-plus-80px.

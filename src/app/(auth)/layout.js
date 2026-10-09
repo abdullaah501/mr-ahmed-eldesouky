@@ -17,7 +17,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
         width: 1200,
         height: 896,
         alt: "أ. أحمد الدسوقي",

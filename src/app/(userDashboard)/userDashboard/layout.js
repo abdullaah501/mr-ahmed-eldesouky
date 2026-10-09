@@ -13,7 +13,7 @@ export const metadata = {
     "أحمد الدسوقي, تدريس الكيمياء, دروس الكيمياء, منصة تعليمية, تعلم الكيمياء",
   author: "أ. أحمد الدسوقي",
   siteUrl: "https://mr-ahmed-eldesouky.pixelpulse.online",
-  image: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+  image: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
 };
 
 export default async function UserDashboardLayout({ children }) {

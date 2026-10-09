@@ -18,12 +18,12 @@ export const metadata = {
   openGraph: {
     title: "لوحة التحكم — أ. أحمد الدسوقي",
     description: "لوحة إدارة المنصة التعليمية لمادة الكيمياء.",
-    url: "https://mr-ahmed-eldesouky.pixelpulse.online/dashboard/overview",
+    url: "https://mr-ahmed-eldesouky.vercel.app/dashboard/overview",
     siteName: "أ. أحمد الدسوقي — الكيمياء",
     type: "website",
     images: [
       {
-        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
         width: 1200,
         height: 896,
         alt: "لوحة التحكم — أ. أحمد الدسوقي",
