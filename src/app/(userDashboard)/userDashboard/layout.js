@@ -12,7 +12,7 @@ export const metadata = {
   keywords:
     "أحمد الدسوقي, تدريس الكيمياء, دروس الكيمياء, منصة تعليمية, تعلم الكيمياء",
   author: "أ. أحمد الدسوقي",
-  siteUrl: "https://mr-ahmed-eldesouky.pixelpulse.online",
+  siteUrl: "https://mr-ahmed-eldesouky.vercel.app",
   image: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
 };
 

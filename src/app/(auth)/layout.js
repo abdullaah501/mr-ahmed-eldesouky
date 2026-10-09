@@ -44,7 +44,7 @@ export default async function AuthLayout({ children }) {
             />
             <link
               rel="canonical"
-              href="https://mr-ahmed-eldesouky.pixelpulse.online"
+              href="https://mr-ahmed-eldesouky.vercel.app"
             />
             <link rel="icon" href="/favicon.ico" sizes="any" />
           </Head>

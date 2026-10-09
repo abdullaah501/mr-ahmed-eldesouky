@@ -14,7 +14,7 @@ const schemaData = [
     "@id": "https://mr-ahmed-eldesouky.vercel.app/#website",
     name: "أ. أحمد الدسوقي — منصة الكيمياء",
     alternateName: "منصة أحمد الدسوقي للكيمياء",
-    url: "https://mr-ahmed-eldesouky.pixelpulse.online",
+    url: "https://mr-ahmed-eldesouky.vercel.app",
     description:
       "منصة أ. أحمد الدسوقي التعليمية لتعلم الكيمياء من خلال الشرح والدروس والاختبارات والتدريبات والمراجعات.",
     inLanguage: "ar",
@@ -22,7 +22,7 @@ const schemaData = [
       "@type": "Organization",
       "@id": "https://mr-ahmed-eldesouky.vercel.app/#organization",
       name: "أ. أحمد الدسوقي",
-      url: "https://mr-ahmed-eldesouky.pixelpulse.online",
+      url: "https://mr-ahmed-eldesouky.vercel.app",
       logo: {
         "@type": "ImageObject",
         url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
@@ -37,7 +37,7 @@ const schemaData = [
     "@id": "https://mr-ahmed-eldesouky.vercel.app/#organization",
     name: "أ. أحمد الدسوقي",
     alternateName: ["منصة أحمد الدسوقي", "أحمد الدسوقي كيمياء"],
-    url: "https://mr-ahmed-eldesouky.pixelpulse.online",
+    url: "https://mr-ahmed-eldesouky.vercel.app",
     logo: {
       "@type": "ImageObject",
       url: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
@@ -79,7 +79,7 @@ export const metadata = {
     title: "أ. أحمد الدسوقي | مدرس كيمياء",
     description:
       "اتعلّم الكيمياء بطريقة أبسط وأوضح — شرح ودروس واختبارات ومراجعات.",
-    url: "https://mr-ahmed-eldesouky.pixelpulse.online",
+    url: "https://mr-ahmed-eldesouky.vercel.app",
     siteName: "أ. أحمد الدسوقي — الكيمياء",
     locale: "ar_EG",
     type: "website",
@@ -121,10 +121,7 @@ export default async function PlatformLayout({ children }) {
           />
           <meta property="og:site_name" content="أ. أحمد الدسوقي — الكيمياء" />
           <meta name="application-name" content="أ. أحمد الدسوقي — الكيمياء" />
-          <link
-            rel="canonical"
-            href="https://mr-ahmed-eldesouky.pixelpulse.online"
-          />
+          <link rel="canonical" href="https://mr-ahmed-eldesouky.vercel.app" />
           <ClientWrapper user={userStr}>
             <Navbar initUser={userStr} />
             <div className="font-amin text-text-primary">{children}</div>

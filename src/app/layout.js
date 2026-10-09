@@ -44,7 +44,7 @@ const aminFont = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://mr-ahmed-eldesouky.pixelpulse.online"),
+  metadataBase: new URL("https://mr-ahmed-eldesouky.vercel.app"),
   manifest: "/manifest.webmanifest",
   title: {
     default: "أ. أحمد الدسوقي | مدرس كيمياء",

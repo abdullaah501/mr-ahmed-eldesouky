@@ -95,7 +95,7 @@ export default function ContactUsPage() {
             mainEntity: {
               "@type": "EducationalOrganization",
               name: "أ. أحمد الدسوقي — مدرس كيمياء",
-              url: "https://mr-ahmed-eldesouky.pixelpulse.online",
+              url: "https://mr-ahmed-eldesouky.vercel.app",
               logo: "https://mr-ahmed-eldesouky.vercel.app/logo.png",
               image: "https://mr-ahmed-eldesouky.vercel.app/og.jpeg",
             },
