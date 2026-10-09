@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { createTemplateDefinition } from "../../lib/import/template/templateDefinition";
 import { getExporter, getSupportedFormats } from "../../lib/import/template/registry";
 
-// Runtime grade source is the Grade collection â€” unit suites mock it.
+// Runtime grade source is the Grade collection — unit suites mock it.
 vi.mock("../../models/Grade", () => ({
   default: {
     find: vi.fn().mockReturnValue({

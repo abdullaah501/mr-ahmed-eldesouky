@@ -17,13 +17,13 @@ export const metadata = {
     title: "إنشاء حساب | أ. أحمد الدسوقي",
     description:
       "سجّل دلوقتي في منصة أ. أحمد الدسوقي وابدأ التدرّب على الكيمياء من خلال اختبارات وتدريبات تفاعلية.",
-    url: "https://mr-mohamed-talaat.pixelpulse.online/signup",
+    url: "https://mr-ahmed-eldesouky.pixelpulse.online/signup",
     siteName: "أ. أحمد الدسوقي — الكيمياء",
     locale: "ar_EG",
     type: "website",
     images: [
       {
-        url: "https://mr-mohamed-talaat.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
         width: 1200,
         height: 896,
         alt: "إنشاء حساب — أ. أحمد الدسوقي",
@@ -34,7 +34,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "إنشاء حساب | أ. أحمد الدسوقي",
     description: "سجّل في منصة أ. أحمد الدسوقي وابدأ رحلة التعلم دلوقتي.",
-    images: ["https://mr-mohamed-talaat.pixelpulse.online/og.jpeg"],
+    images: ["https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg"],
   },
 };
 

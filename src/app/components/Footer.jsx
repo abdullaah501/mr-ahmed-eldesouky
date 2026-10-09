@@ -6,7 +6,7 @@ import { TEACHER_SOCIALS, FOOTER_LINKS } from "./brand/teacherBrand";
 
 export default function Footer() {
  return (
- <footer className="mt-16 border-t border-white/10 bg-gradient-to-b from-[#073B40] to-[#0A2124] text-white ">
+ <footer className="mt-16 border-t border-white/15 bg-gradient-to-b from-[#0E666B]/75 to-[#0A4F53]/85 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-xl backdrop-saturate-150 ">
  {/* subtle chemistry dot pattern */}
  <div
  className="chem-pattern pointer-events-none absolute inset-0 opacity-40"
@@ -16,17 +16,15 @@ export default function Footer() {
  <div className="grid grid-cols-1 gap-10 py-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
  {/* Brand */}
  <div className="space-y-4 lg:col-span-1">
- <div className="flex items-center gap-3">
- <div className="rounded-2xl bg-white p-2 shadow-sm">
- <Image
- src="/logo.png"
- alt="أ. أحمد الدسوقي — مدرس كيمياء"
- width={44}
- height={44}
- className="h-[44px] w-[44px] object-contain"
- />
- </div>
-<div>
+<div className="flex items-center gap-3">
+              <Image
+                src="/logo.png"
+                alt="أ. أحمد الدسوقي — مدرس كيمياء"
+                width={48}
+                height={48}
+                className="h-12 w-12 object-contain"
+              />
+              <div>
                 <p className="text-lg font-black leading-tight text-white">
  أ. أحمد الدسوقي
  </p>
@@ -35,14 +33,15 @@ export default function Footer() {
  </p>
  </div>
  </div>
- <p className="border-s-2 border-[#FFB81C] ps-3 text-sm font-bold leading-relaxed text-white">
- الكيمياء مش حفظ معادلات...
- <br />
- دي فهم وتفكير.
- </p>
- <p className="max-w-sm text-[13px] leading-relaxed text-white/65">
- منصة تعليمية لتعلم الكيمياء من خلال الشرح والدروس والاختبارات
- والتدريبات والمراجعات.
+<p
+  dir="ltr"
+  className="border-s-2 border-[#FFB81C] ps-3 text-base font-black tracking-wide text-[#FFB81C]"
+  >
+  Bond in Chemistry
+  </p>
+<p className="max-w-sm text-[13px] leading-relaxed text-white/70">
+  منصة تعليمية لتعلم الكيمياء من خلال الشرح والدروس والاختبارات
+  والتدريبات والمراجعات.
  </p>
  <div className="flex flex-wrap gap-2 text-xs font-semibold">
  <span className="rounded-full bg-white/10 px-3 py-1 text-white/90">

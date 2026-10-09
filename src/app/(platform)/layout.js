@@ -11,21 +11,21 @@ const schemaData = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://mr-mohamed-talaat.pixelpulse.online/#website",
+    "@id": "https://mr-ahmed-eldesouky.pixelpulse.online/#website",
     name: "أ. أحمد الدسوقي — منصة الكيمياء",
     alternateName: "منصة أحمد الدسوقي للكيمياء",
-    url: "https://mr-mohamed-talaat.pixelpulse.online",
+    url: "https://mr-ahmed-eldesouky.pixelpulse.online",
     description:
       "منصة أ. أحمد الدسوقي التعليمية لتعلم الكيمياء من خلال الشرح والدروس والاختبارات والتدريبات والمراجعات.",
     inLanguage: "ar",
     publisher: {
       "@type": "Organization",
-      "@id": "https://mr-mohamed-talaat.pixelpulse.online/#organization",
+      "@id": "https://mr-ahmed-eldesouky.pixelpulse.online/#organization",
       name: "أ. أحمد الدسوقي",
-      url: "https://mr-mohamed-talaat.pixelpulse.online",
+      url: "https://mr-ahmed-eldesouky.pixelpulse.online",
       logo: {
         "@type": "ImageObject",
-        url: "https://mr-mohamed-talaat.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
         width: 400,
         height: 400,
       },
@@ -34,13 +34,13 @@ const schemaData = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://mr-mohamed-talaat.pixelpulse.online/#organization",
+    "@id": "https://mr-ahmed-eldesouky.pixelpulse.online/#organization",
     name: "أ. أحمد الدسوقي",
     alternateName: ["منصة أحمد الدسوقي", "أحمد الدسوقي كيمياء"],
-    url: "https://mr-mohamed-talaat.pixelpulse.online",
+    url: "https://mr-ahmed-eldesouky.pixelpulse.online",
     logo: {
       "@type": "ImageObject",
-      url: "https://mr-mohamed-talaat.pixelpulse.online/og.jpeg",
+      url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
       width: 400,
       height: 400,
     },
@@ -79,13 +79,13 @@ export const metadata = {
     title: "أ. أحمد الدسوقي | مدرس كيمياء",
     description:
       "اتعلّم الكيمياء بطريقة أبسط وأوضح — شرح ودروس واختبارات ومراجعات.",
-    url: "https://mr-mohamed-talaat.pixelpulse.online",
+    url: "https://mr-ahmed-eldesouky.pixelpulse.online",
     siteName: "أ. أحمد الدسوقي — الكيمياء",
     locale: "ar_EG",
     type: "website",
     images: [
       {
-        url: "https://mr-mohamed-talaat.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
         width: 1200,
         height: 896,
         alt: "أ. أحمد الدسوقي — مدرس كيمياء",
@@ -96,7 +96,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "أ. أحمد الدسوقي | مدرس كيمياء",
     description: "اتعلّم الكيمياء بطريقة أبسط وأوضح.",
-    images: ["https://mr-mohamed-talaat.pixelpulse.online/og.jpeg"],
+    images: ["https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg"],
   },
   icons: {
     icon: "/favicon.ico",
@@ -123,7 +123,7 @@ export default async function PlatformLayout({ children }) {
           <meta name="application-name" content="أ. أحمد الدسوقي — الكيمياء" />
           <link
             rel="canonical"
-            href="https://mr-mohamed-talaat.pixelpulse.online"
+            href="https://mr-ahmed-eldesouky.pixelpulse.online"
           />
           <ClientWrapper user={userStr}>
             <Navbar initUser={userStr} />

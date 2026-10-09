@@ -27,7 +27,7 @@ vi.mock("../../lib/ai/index", () => ({
 
 import { POST } from "../../src/app/api/ai/chat-bot/route";
 
-const URL_BASE = "https://mr-mohamed-talaat.example";
+const URL_BASE = "https://mr-ahmed-eldesouky.example";
 const originalUrl = process.env.URL;
 
 function makeReq({ message = "hello", origin = URL_BASE } = {}) {
@@ -50,7 +50,11 @@ beforeEach(() => {
   process.env.URL = URL_BASE;
   mocks.checkRateLimit.mockResolvedValue({ allowed: true });
   mocks.incrementRateLimit.mockResolvedValue(undefined);
-  mocks.ai.mockResolvedValue({ text: "ok", provider: "google", model: "model-x" });
+  mocks.ai.mockResolvedValue({
+    text: "ok",
+    provider: "google",
+    model: "model-x",
+  });
 });
 
 afterEach(() => {
@@ -78,7 +82,10 @@ describe("POST /api/ai/chat-bot", () => {
     expect(task.messages[0].content).toContain("أحمد الدسوقي");
     expect(task.messages[0].content).not.toContain("Marian");
     expect(task.messages[0].content).not.toContain("mrs-marian.com");
-    expect(task.messages[1]).toEqual({ role: "user", content: "How do I study?" });
+    expect(task.messages[1]).toEqual({
+      role: "user",
+      content: "How do I study?",
+    });
 
     expect(mocks.incrementRateLimit).toHaveBeenCalledTimes(1);
     expect(mocks.incrementRateLimit).toHaveBeenCalledWith({

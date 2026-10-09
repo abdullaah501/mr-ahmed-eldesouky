@@ -7,7 +7,7 @@ import "../../src/question-system/plugins/fill-blank/core";
 import "../../src/question-system/plugins/matching/core";
 import "../../src/question-system/plugins/image-choice/core";
 
-// Runtime grade source is the Grade collection â€” unit suites mock it.
+// Runtime grade source is the Grade collection — unit suites mock it.
 vi.mock("../../models/Grade", () => ({
   default: {
     find: vi.fn().mockReturnValue({

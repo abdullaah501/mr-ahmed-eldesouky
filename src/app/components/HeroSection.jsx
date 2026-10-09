@@ -46,9 +46,15 @@ export default async function HeroSection() {
             </span>
           </div>
 
-          <div className="relative mx-auto flex min-h-[520px] max-w-7xl md:items-center items-end px-4 py-20 sm:min-h-[560px] sm:px-6 lg:min-h-[620px] lg:px-8 max-md:pb-4">
+          <div className="relative mx-auto flex min-h-[520px] max-w-7xl items-end px-4 pb-20 pt-0 sm:min-h-[560px] sm:px-6 md:items-center lg:min-h-screen lg:px-8 max-md:pb-4">
             <Reveal className="max-w-xl" y={18}>
-              <h1 className="text-balance text-[34px] font-black leading-[1.35] text-white/90 sm:text-5xl lg:text-[56px]">
+              <p
+                dir="ltr"
+                className="text-xs font-black uppercase tracking-[0.3em] text-[#FFB81C] sm:text-sm"
+              >
+                Bond in Chemistry
+              </p>
+              <h1 className="mt-4 text-balance text-[34px] font-black leading-[1.35] text-white/90 sm:text-5xl lg:text-[56px]">
                 الكيمياء مش حفظ معادلات...
                 <span className="mt-1 block text-[#FFB81C]">
                   دي فهم وتفكير.
@@ -59,7 +65,7 @@ export default async function HeroSection() {
                 أحمد الدسوقي
               </p>
               <p className="mt-1 text-sm font-bold text-white/70 sm:text-base">
-                مدرس كيمياء في الإسماعيلية
+                بوند الكيمياء في اسماعيلية
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">

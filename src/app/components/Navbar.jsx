@@ -32,38 +32,28 @@ export default function Navbar({ initUser }) {
  href === "/" ? pathname === "/" : pathname?.startsWith(href);
 
  return (
- <div className="sticky top-0 z-40 w-full bg-[#073B40] text-white shadow-lg shadow-[#073B40]/20 ">
+ <div className="sticky top-0 z-40 w-full border-b border-white/15 bg-[#0E666B]/70 text-white shadow-lg shadow-[#0A4F53]/20 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-[#0E666B]/60 ">
  <ScrollProgressBar />
  <nav
  aria-label="التنقل الرئيسي"
  className="mx-auto flex h-[72px] max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8"
  >
-{/* Brand — logo + wordmark */}
+{/* Brand — logo only (the artwork already spells out the name) */}
   <Link
   href="/"
   onClick={closeMenu}
-  className="flex items-center gap-3 shrink-0"
+  className="flex shrink-0 items-center"
   aria-label="أ. أحمد الدسوقي — الرئيسية"
   >
-  <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl bg-white">
   <Image
   src="/logo.png"
-  alt=""
-  width={40}
-  height={40}
+  alt="أ. أحمد الدسوقي"
+  width={44}
+  height={44}
   priority
-  className="h-10 w-10 object-contain"
+  className="h-11 w-11 object-contain"
   />
-  </span>
- <span className="hidden min-[420px]:flex flex-col leading-tight">
- <span className="text-[15px] font-extrabold text-white">
- أ. أحمد الدسوقي
- </span>
- <span className="text-[11px] font-bold text-[#FFB81C]">
- مدرس كيمياء • الإسماعيلية
- </span>
- </span>
- </Link>
+  </Link>
 
  {/* Desktop links — amber underline active state */}
  <div className="hidden items-center gap-1 lg:flex ms-4">
@@ -157,7 +147,7 @@ export default function Navbar({ initUser }) {
  {/* Mobile panel */}
  <div
  id={panelId}
- className={`grid md:hidden border-t border-white/10 bg-[#0B5155] transition-[grid-template-rows,opacity,border-color] duration-300 ease-out will-change-[grid-template-rows] ${isOpen ? "grid-rows-[1fr] opacity-100 border-white/10" : "grid-rows-[0fr] opacity-0 border-transparent pointer-events-none"}`}
+ className={`grid md:hidden border-t border-white/10 bg-[#0A5A5F]/80 backdrop-blur-xl transition-[grid-template-rows,opacity,border-color] duration-300 ease-out will-change-[grid-template-rows] ${isOpen ? "grid-rows-[1fr] opacity-100 border-white/10" : "grid-rows-[0fr] opacity-0 border-transparent pointer-events-none"}`}
  aria-hidden={!isOpen}
  >
  <div className="overflow-hidden">

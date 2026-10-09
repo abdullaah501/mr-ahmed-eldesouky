@@ -18,12 +18,12 @@ export const metadata = {
   openGraph: {
     title: "لوحة التحكم — أ. أحمد الدسوقي",
     description: "لوحة إدارة المنصة التعليمية لمادة الكيمياء.",
-    url: "https://mr-mohamed-talaat.pixelpulse.online/dashboard/overview",
+    url: "https://mr-ahmed-eldesouky.pixelpulse.online/dashboard/overview",
     siteName: "أ. أحمد الدسوقي — الكيمياء",
     type: "website",
     images: [
       {
-        url: "https://mr-mohamed-talaat.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
         width: 1200,
         height: 896,
         alt: "لوحة التحكم — أ. أحمد الدسوقي",
@@ -47,8 +47,7 @@ export default async function Dashboard() {
       } else userDB = user;
 
       const displayName =
-        `${userDB?.firstName ?? ""} ${userDB?.lastName ?? ""}`.trim() ||
-        "مشرف";
+        `${userDB?.firstName ?? ""} ${userDB?.lastName ?? ""}`.trim() || "مشرف";
 
       return (
         <div className="min-h-screen bg-background">
@@ -102,8 +101,7 @@ export default async function Dashboard() {
                         href="/dashboard/exams"
                         className="inline-flex items-center gap-1.5 rounded-xl bg-brand-navy px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-(--brand-navy-hover)"
                       >
-                        إدارة الاختبارات{" "}
-                        <LuArrowLeft size={13} />
+                        إدارة الاختبارات <LuArrowLeft size={13} />
                       </Link>
                       <Link
                         href="/dashboard/grades"

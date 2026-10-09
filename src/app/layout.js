@@ -44,7 +44,7 @@ const aminFont = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://mr-mohamed-talaat.pixelpulse.online"),
+  metadataBase: new URL("https://mr-ahmed-eldesouky.pixelpulse.online"),
   manifest: "/manifest.webmanifest",
   title: {
     default: "أ. أحمد الدسوقي | مدرس كيمياء",
@@ -91,11 +91,10 @@ export const viewport = {
 
 export default async function RootLayout({ children }) {
   return (
-    <html
-      lang="ar"
-      dir="rtl"
-      className="scroll-smooth"
-    >
+    <html lang="ar" dir="rtl" className="scroll-smooth">
+      <head>
+        <meta charset="UTF-8" />
+      </head>
       <body
         className={`${poppins.variable} ${cairo.variable} ${aminFont.className} antialiased bg-background`}
       >

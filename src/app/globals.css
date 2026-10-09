@@ -251,9 +251,30 @@ body {
 :focus:not(:focus-visible) {
   outline: none;
 }
-:focus-visible {
+
+/* Buttons, links and other controls keep a crisp keyboard ring ... */
+:where(a, button, summary, [role="button"], [role="tab"], [role="switch"], [tabindex]):focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
+}
+
+/* ... but text form fields get no drawn outline and no halo at all -
+   the existing border simply turns brand teal, which is the only
+   focus indicator they need. This is unlayered CSS, so it also wins
+   against Tailwind's `focus:ring-*` utilities used on inputs. */
+:where(
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+    textarea,
+    select
+  ):focus,
+:where(
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+    textarea,
+    select
+  ):focus-visible {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--focus);
 }
 
 /* ===== Reusable utility patterns ===== */
@@ -263,8 +284,8 @@ body {
 }
 .input:focus {
   outline: none !important;
-  border-color: var(--border);
   box-shadow: none !important;
+  border-color: var(--focus);
 }
 .input:disabled {
   opacity: 0.5;

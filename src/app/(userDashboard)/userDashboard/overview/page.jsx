@@ -65,9 +65,12 @@ export default async function Dashboard() {
                     </span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-extrabold text-[#FFB81C]">
-                      منصة أ. أحمد الدسوقي — الكيمياء
-                    </p>
+                    <p
+  dir="ltr"
+  className="text-xs font-extrabold tracking-wide text-[#FFB81C]"
+  >
+  Bond in Chemistry
+  </p>
                     <h1 className="mt-1 text-2xl font-black text-white sm:text-[28px]">
                       أهلاً {userDB?.firstName || "بيك"}
                     </h1>

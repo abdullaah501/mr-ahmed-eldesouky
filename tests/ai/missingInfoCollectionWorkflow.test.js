@@ -5,7 +5,7 @@ import { resetAll } from "../../lib/ai/core/circuitBreaker";
 import { reloadAiEnv } from "../../lib/ai/config/env";
 import { makeFakeProvider } from "./helpers/fakeProvider";
 
-// Runtime grade source is the Grade collection â€” unit suites mock it.
+// Runtime grade source is the Grade collection — unit suites mock it.
 vi.mock("../../models/Grade", () => ({
   default: {
     find: vi.fn().mockReturnValue({

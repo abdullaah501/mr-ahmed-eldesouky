@@ -12,8 +12,8 @@ export const metadata = {
   keywords:
     "أحمد الدسوقي, تدريس الكيمياء, دروس الكيمياء, منصة تعليمية, تعلم الكيمياء",
   author: "أ. أحمد الدسوقي",
-  siteUrl: "https://mr-mohamed-talaat.pixelpulse.online",
-  image: "https://mr-mohamed-talaat.pixelpulse.online/og.jpeg",
+  siteUrl: "https://mr-ahmed-eldesouky.pixelpulse.online",
+  image: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
 };
 
 export default async function UserDashboardLayout({ children }) {
@@ -45,7 +45,10 @@ export default async function UserDashboardLayout({ children }) {
             <meta property="og:url" content={metadata.siteUrl} />
             <meta property="og:type" content="website" />
             <meta property="og:locale" content="ar_EG" />
-            <meta property="og:site_name" content="أ. أحمد الدسوقي — الكيمياء" />
+            <meta
+              property="og:site_name"
+              content="أ. أحمد الدسوقي — الكيمياء"
+            />
 
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={metadata.title} />

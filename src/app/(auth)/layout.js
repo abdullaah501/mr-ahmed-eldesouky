@@ -17,7 +17,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://mr-mohamed-talaat.pixelpulse.online/og.jpeg",
+        url: "https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg",
         width: 1200,
         height: 896,
         alt: "أ. أحمد الدسوقي",
@@ -44,7 +44,7 @@ export default async function AuthLayout({ children }) {
             />
             <link
               rel="canonical"
-              href="https://mr-mohamed-talaat.pixelpulse.online"
+              href="https://mr-ahmed-eldesouky.pixelpulse.online"
             />
             <link rel="icon" href="/favicon.ico" sizes="any" />
           </Head>

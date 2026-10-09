@@ -75,7 +75,7 @@ export async function POST(req) {
         
         <!-- Footer -->
         <div style="background-color: #edf2f7; padding: 16px; text-align: center; font-size: 12px; color: #718096; border-top: 1px solid #e2e8f0;">
-          تم إرسال هذه الرسالة تلقائياً من نموذج التواصل في موقع <a href="https://mr-mohamed-talaat.pixelpulse.online" style="color: #00b9ae; text-decoration: none; font-weight: bold;">منصة أ. أحمد الدسوقي</a>
+          تم إرسال هذه الرسالة تلقائياً من نموذج التواصل في موقع <a href="https://mr-ahmed-eldesouky.pixelpulse.online" style="color: #00b9ae; text-decoration: none; font-weight: bold;">منصة أ. أحمد الدسوقي</a>
         </div>
       </div>
     `;

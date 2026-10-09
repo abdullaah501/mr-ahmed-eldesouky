@@ -146,7 +146,7 @@ export default function Sidenav({ initialUser }) {
  return (
  <>
  {/* Mobile top bar */}
- <div className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-white/10 bg-[#073B40] px-4 text-white shadow-sm md:hidden">
+ <div className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-white/15 bg-[#0E666B]/70 px-4 text-white shadow-lg shadow-[#0A4F53]/20 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-[#0E666B]/60 md:hidden">
  <button
  onClick={() => setIsOpen(true)}
  aria-label="فتح القائمة"
@@ -154,22 +154,14 @@ export default function Sidenav({ initialUser }) {
  >
  <FaBars size={18} />
  </button>
- <Link href="/" className="inline-flex items-center gap-2">
+ <Link href="/" className="inline-flex items-center">
  <Image
  src="/logo.png"
  alt="أ. أحمد الدسوقي — مدرس كيمياء"
  width={36}
  height={36}
- className="h-[36px] w-[36px] rounded-lg bg-white p-0.5 object-contain"
+ className="h-[36px] w-[36px] object-contain"
  />
- <span className="hidden sm:flex flex-col leading-none text-right">
- <span className="text-xs font-extrabold text-white">
- أ. أحمد الدسوقي
- </span>
- <span className="text-[9px] font-bold text-[#FFB81C]">
- مدرس كيمياء
- </span>
- </span>
  </Link>
  </div>
 
@@ -258,21 +250,19 @@ export default function Sidenav({ initialUser }) {
  {/* Teacher card */}
  <div className="px-3 pb-2">
  <div className="flex items-center gap-2.5 rounded-2xl border border-[#FFB81C]/30 bg-[#FFB81C]/10 p-3">
-<span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl bg-white">
-  <Image
+<Image
   src="/logo.png"
-  alt=""
+  alt="أ. أحمد الدسوقي"
   width={38}
   height={38}
   className="h-[38px] w-[38px] object-contain"
   />
-  </span>
  <div className="min-w-0">
  <p className="truncate text-xs font-black text-white">
  أ. أحمد الدسوقي
  </p>
- <p className="text-[11px] font-bold text-[#FFB81C]">
- الكيمياء مش حفظ... دي فهم
+ <p dir="ltr" className="text-[11px] font-bold tracking-wide text-[#FFB81C]">
+ Bond in Chemistry
  </p>
  </div>
  </div>

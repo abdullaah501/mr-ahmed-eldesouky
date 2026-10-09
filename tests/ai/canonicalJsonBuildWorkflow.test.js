@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
-// Runtime grade source is the Grade collection â€” unit suites mock it.
+// Runtime grade source is the Grade collection — unit suites mock it.
 vi.mock("../../models/Grade", () => ({
   default: {
     find: vi.fn().mockReturnValue({

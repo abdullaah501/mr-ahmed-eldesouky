@@ -10,8 +10,10 @@ export const TEACHER = {
   subject: "الكيمياء",
   profession: "مدرس كيمياء",
   location: "الإسماعيلية، مصر",
+  slogan: "Bond in Chemistry",
   tagline: "اتعلّم الكيمياء بطريقة أبسط وأوضح",
-  brandLine: "الكيمياء مش حفظ معادلات... دي فهم وتفكير.",
+  brandLine: "Bond in Chemistry",
+  heroLine: "الكيمياء مش حفظ معادلات... دي فهم وتفكير.",
   description:
     "منصة أ. أحمد الدسوقي التعليمية لتعلم الكيمياء من خلال الشرح والدروس والاختبارات والتدريبات والمراجعات.",
 };

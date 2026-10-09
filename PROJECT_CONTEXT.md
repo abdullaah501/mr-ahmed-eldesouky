@@ -397,6 +397,7 @@ No reference image file exists in the repo; direction implemented from the writt
 - **New motion infra**: `lib/anim.js` (once-only ScrollTrigger+MotionPath registration, `prefersReducedMotion()`); `src/app/components/ui/Reveal.jsx` (mount/scroll entrance wrapper, `as` prop, reduced-motion safe). Used on: hero text+portrait, homepage steps/grades headers, overview/exams/grades/contact headers, CTA. Exam runner untouched by entrance animation (focused env). Fixed latent bug: `WhyChooseMeCard` used ScrollTrigger without registration (worked only while the now-unused BenefitsSection registered it) — now via `lib/anim` + `once:true` + reduced-motion guard.
 - **Icon audit**: all decorative Unicode/emoji replaced with `react-icons/lu` (all names verified against installed v5.5): ~35 files — 12 dashboard pages (badges: LuClipboardList/LuPlus/LuPlay/LuLayers/LuCalendarDays/LuChartNoAxesCombined/LuUsers/LuBell/LuPenLine/LuDatabase; back arrows LuArrowLeft), Repository/AI workbench (LuFlaskConical/LuCheck/LuX + ValidationStep Arabic string), SignUpForm stepper, GradesSection CSS dots, DataCards iconMap→components, ResultsByExam, NotificationBell (dropped emoji toast icon), contact/CTA/homepage arrows, Footer dot, student sections (LuFlaskConical/LuCircleCheck), UserAnalyticsSection (LuSigma/LuDiamond/LuTriangle), guardian backdrops, plus my files (ExamCard/GradeCard/Pagination/WhyChooseMe/Hero/overview/exams/grades/settings/gradeId). Kept legitimately: MathToolbar/MathRenderer math symbols, formula strings (H₂O/NaCl/pH), LTR time-range arrows, MTMark logo, `π` faint backdrops.
 - **Verification**: `npm run build` passes; full suite 984/8 (same pre-existing env baseline); eslint 0 errors; symbol grep clean in `src/app`.
+
 ## Homepage Reference-Fidelity Pass (attached Chemistry Learning Dashboard PNG) - Complete
 
 Compared the rendered markup against the attached reference image and closed the remaining gaps. Build passes; full suite 984 passed / 8 failed (identical pre-existing `updateUserData` baseline).
@@ -407,6 +408,7 @@ Compared the rendered markup against the attached reference image and closed the
 - **ExamShowcaseCard**: restructured to reference anatomy - fixed-height art band with status pill, then a white body carrying title/grade/question-count/duration and the CTA. Middle card is elevated (`featured`) with the filled amber button; untaken outer cards use the outlined button, completed ones use the soft navy button. Grid uses `items-start` so the featured lift doesn't stretch siblings.
 - **Results table**: columns reordered to match the reference (الامتحان / التاريخ / الدرجة / الحالة), score column now shows the real computed percentage, and status is a real pass/fail pill (`>= 50%`) instead of a constant "مكتمل". Empty state added when a student has no submissions.
 - **CTA band** now renders for logged-in students too (previously guest-only via `CTASection`), wired to the student's next exam with a browse fallback.
+
 ## Guest Dashboard Mockup - Complete
 
 Requested: show a stats/dashboard mockup on the homepage when there is no session. Build passes; suite unchanged at 984 passed / 8 failed (pre-existing baseline).
@@ -415,6 +417,7 @@ Requested: show a stats/dashboard mockup on the homepage when there is no sessio
 - **New `MockDashboard`** (`src/app/components/home/MockDashboard.jsx`): static preview of the student dashboard for guests, mirroring the reference layout - stats card with three rings (72% / 4-5 / 12), welcome card with a sample "next exam" panel, and a sample results table. Explicitly badged as `معاينة تجريبية` / `بيانات توضيحية`, and all values are hard-coded illustrative constants (`MOCK_STATS`, `MOCK_RESULTS`) so they can never be mistaken for real user data.
 - **No real-data leakage**: the mockup makes no database calls and every action links to `/signup` (or `/login` in the hero) instead of a real exam route.
 - **Wiring**: rendered only in the guest branch of `src/app/(platform)/page.js`, above `WhyChooseMe`. Logged-in students still get the fully real `StudentHome` - the mockup and real dashboard never render together.
+
 ## Animated Stats + Atom Orbit & Lab Glassware - Complete
 
 Build passes; suite unchanged at 984 passed / 8 failed (pre-existing `updateUserData` baseline).
@@ -424,6 +427,7 @@ Build passes; suite unchanged at 984 passed / 8 failed (pre-existing `updateUser
 - **New `LabGlassware`** (`src/app/components/brand/LabGlassware.jsx`): animated conical flask + round-bottom flask + test tube. Glass outlines draw on, liquid gradients slosh, bubbles rise and fade on staggered infinite loops (clipped inside each vessel), and a bonded 3-atom molecule cluster rotates inside the bulb. Each vessel's liquid and bubbles are `clipPath`-scoped to the glass so nothing spills past the outline.
 - **Placement**: hero now shows `AtomOrbit` (top-left) + `LabGlassware` (bottom-left) in place of the single fingerprint; `CTASection` gained the glassware; the student dashboard CTA band gained the orbit. The fingerprint remains as the identity mark elsewhere (footer, 404, sidebar, quiz, cards).
 - **Verification**: rasterised both SVGs to PNG with `sharp` and inspected them, which caught two real defects that were then fixed - the conical flask's liquid meniscus line extended past the glass walls (now clipped), and the main orbit was too faint under the core (thicker stroke plus the amber trail arc).
+
 ## Removed ChemicalFingerprint - Complete
 
 `src/app/components/brand/ChemicalFingerprint.jsx` deleted along with every import and usage. The brand mark is now `AtomOrbit` (with `LabGlassware` for the lab scene); nothing references the fingerprint symbol any more.
@@ -467,3 +471,97 @@ Reported symptom: every animation on the homepage frozen (hero orbit/flasks, sta
 - Also confirmed along the way: SSR HTML contains the animation markup (`ao-ring`, `lg-glass`, `mr-arc`, hero images), GSAP + ScrollTrigger are present in the client bundle, and disk space is fine (34 GB free on C:, 59 GB on D:).
 - **Real code fix made in passing**: `MetricRing` used to zero the readout at mount and animate via a ScrollTrigger-bound timeline, so any ring not yet scrolled into view displayed "0". It now builds a paused timeline and plays it from a one-shot `ScrollTrigger.create({ onEnter })`, so off-screen rings keep their server-rendered value and only animate when they enter view.
 - **If it recurs**: never run `npm run build` while `npm run dev` is running - both write `.next`. Stop the dev server, delete `.next`, then restart, and hard-refresh (Ctrl+Shift+R) so the browser drops the previously truncated chunks from cache.
+
+## public/og.jpeg Wired As The Social Image - Complete
+
+Build passes. The user supplied `public/og.jpeg` (1200x896, jpeg); it is now the OG/Twitter image everywhere instead of `logo.png`.
+
+- **`src/app/layout.js`**: added site-wide `openGraph` (type/locale/siteName/title/description/images) and `twitter` (`card: summary_large_image`) defaults pointing at `/og.jpeg`. The existing `metadataBase` resolves the relative URL to `https://mr-ahmed-eldesouky.pixelpulse.online/og.jpeg`.
+- **`src/app/(platform)/page.js`**: homepage metadata now uses `/og.jpeg` with the real 1200x896 dimensions, `url: "/"`, plus a matching `twitter` block.
+- **Scripted sweep** over `src/app/**`: every remaining social-image reference that pointed at the absolute `.../logo.png` (with a declared 1200x630 that never matched the asset) now points at `.../og.jpeg`, and the declared dimensions were corrected to `width: 1200, height: 896`. Files touched: `(auth)/layout.js`, `(auth)/login/page.jsx`, `(auth)/signup/page.jsx`, `(dashboard)/layout.js`, `(dashboard)/dashboard/overview/page.jsx`, `(platform)/layout.js`, `(platform)/contact/page.jsx`, `(userDashboard)/userDashboard/layout.js`. In-page `<Image src="/logo.png">` UI logos were left alone.
+- **Exception**: the schema.org JSON-LD `EducationalOrganization.logo` in `(platform)/contact/page.jsx` still uses `/logo.png` (a square mark is the right asset for `logo`); a sibling `image` property was added with the OG URL instead.
+- **Verified live**: the dev server renders `og:image` = absolute `/og.jpeg`, `og:image:width=1200`, `og:image:height=896`, `og:image:alt`, and `twitter:card=summary_large_image` with `twitter:image` pointing at the same file.
+- **Note**: `og.jpeg` is 1.34:1, while Facebook/X prefer 1.91:1 (1200x630) for `summary_large_image`; the image will be slightly letterboxed or centre-cropped in link previews.
+- **Open item (not caused by this change)**: `tests/repository/docxExporterReal.test.js` now fails on `expect(arabicBlock).toContain('<w:jc w:val="right"/>')`. Root cause verified in isolation - `docx@9.9.0` rewrites paragraph alignment when `bidirectional: true`: `new Paragraph({bidirectional:true, alignment:"right"})` serialises to `<w:bidi/><w:jc w:val="left"/>`, while the same paragraph without `bidirectional` keeps `w:val="right"`. The exporter at `lib/repository/exporters/docx.js` still asks for RIGHT, so the library is normalising it. Needs a decision: adjust the test expectation, or switch the exporter to `AlignmentType.START`.
+- **Heads-up**: `src/app/components/HeroSection.jsx` was modified outside this session (19:54) - the hero images switched to `/hero-mobile.png` and `/hero-desk.png` and the gradient scrim div was emptied to `<div className="absolute inset-0 -z-10" />`. Without that scrim the headline and CTA sit directly on the photo with no contrast layer.
+
+## Logo Backgrounds Removed + Navbar Wordmark Deleted - Complete
+
+Build passes. Suite: 983 passed / 9 failed - the 8 pre-existing `updateUserData` failures plus the `docxExporterReal` RTL-alignment mismatch documented in the previous entry (unrelated to this work).
+
+- **Finding**: `public/logo.png` was never the problem - inspected its pixels and the corners are already `[0,0,0,0]`, i.e. the artwork is a transparent PNG (the white seen in the earlier preview render was just the image viewer compositing transparency on white). The visible white blocks were the `bg-white` containers added when the logo replaced the old monogram.
+- **Removed every white backdrop around the logo**:
+  - `components/Navbar.jsx` - the `rounded-xl bg-white` chip is gone; the `<Image>` renders directly on the teal bar.
+  - `components/ui/Sidenav.jsx` - teacher-card `rounded-xl bg-white` chip removed, and the mobile top-bar logo lost `rounded-lg bg-white p-0.5`.
+  - `components/Footer.jsx` - the `rounded-2xl bg-white p-2 shadow-sm` wrapper is gone (logo grew to 48px).
+- **Deleted the wordmark next to the logo**: the Navbar brand lockup is now just `/logo.png` at 44px (the name, the "مدرس كيمياء • الإسماعيلية" subtitle and the wrapper span are all gone), and the Sidenav mobile top bar logo lost its name/subtitle stack for the same reason. `aria-label`/`alt` still carry the name for screen readers and SEO.
+- **Left in place on purpose**: the Footer brand block name/role, the Sidenav teacher card, and the header name blocks on `/contact`, the admin dashboard and the student dashboard - those are informational blocks, not logo lockups. Say the word if they should go too.
+- **Contrast warning (verified by compositing the PNG over `#073B40` and inspecting it)**: the artwork's dark-teal outlines and strokes are almost the same value as the navbar/sidebar background, so on those dark surfaces only the amber and white lettering reads and the rest of the mark disappears - worse at 44px. If legibility matters more than the flat look, a `bg-white/10` + `backdrop-blur` glass chip (instead of solid white) or a lighter variant of the asset would fix it without bringing back an opaque white block.
+
+## Fixed: Mojibake Arabic In `components/home/StudentHome.jsx`
+
+Reported symptom: the welcome subtitle rendered as garbage, e.g. `Ø§Ø³ØªÙ…Ø± ÙÙŠ Ø±Ø­Ø†ØªÙƒ...`. That is Arabic text that had been decoded as Windows-1252 and re-saved as UTF-8 (mojibake) - and it was rendering live on the logged-in homepage.
+
+- **Scope**: swept every `.js/.jsx` file under `src`, `lib` and `tests` for the classic signatures (`Ø§`, `Ù`, `â€`). Exactly one source file was affected: `components/home/StudentHome.jsx` (whole file, plus a UTF-8 BOM). `src` and `lib` are now clean; the only other hits were 8 AI/import test files each carrying a single mangled em dash in a comment, which were also repaired.
+- **Why a mechanical fix was not enough**: the reverse transform (re-encode to cp1252 bytes, decode as UTF-8) initially produced valid-looking but _wrong_ Arabic ("إىن إحصائىاتقؙ" instead of "إيه إحصائياتك؟") - the corruption was lossier than a clean double-encode (characters had been substituted, not just re-encoded). So the file was rebuilt by hand with correct Arabic while preserving every class name, component and data binding exactly.
+- Also removed the now-unused `ChemicalFingerprint` import from that file (it had been swapped for `AtomOrbit` earlier).
+- **Verified**: the Arabic strings in `StudentHome.jsx` and `MockDashboard.jsx` now read correctly when extracted from disk; build compiles; suite unchanged at 983 passed / 9 failed (8 pre-existing `updateUserData` + the `docxExporterReal` RTL-alignment mismatch).
+- **Likely cause**: the file's mtime (18:59:02) matched a batch of files written outside this session, and PowerShell-style `Set-Content -Encoding utf8` on Windows is the usual way this corruption enters. Anyone editing Arabic in this repo from PowerShell should write files through an editor or Node instead.
+
+## Input Focus Outline Removed - Complete
+
+Reported: focusing an input drew a visible outline around it. Two separate mechanisms were responsible.
+
+- **Global `:focus-visible`** was applying a hard `outline: 2px solid var(--focus)` with `outline-offset: 2px` to _every_ focusable element, inputs included, so the ring floated 2px away from the field like a stray box.
+- **Per-field Tailwind rings**: most text inputs in the app carry `focus:border-brand-navy focus:ring-4 focus:ring-ring focus:outline-none` (a 4px teal halo), and the AI/exam-generator editors use `focus:ring-2 focus:ring-blue-400`.
+
+**Changes (all in `src/app/globals.css`, no per-file edits needed):**
+
+1. The hard keyboard outline is now scoped to interactive controls only: `:where(a, button, summary, [role="button"], [role="tab"], [role="switch"], [tabindex]):focus-visible`. Buttons/links keep their crisp keyboard ring, which is an accessibility requirement.
+2. Text form fields get no outline and no halo at all - the existing 2px border simply turns brand teal (`border-color: var(--focus)`):
+   `:where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), textarea, select):focus, ...:focus-visible { outline: none; box-shadow: none; border-color: var(--focus); }`
+   Because `globals.css` rules are **unlayered**, this also overrides the Tailwind `focus:ring-*` utilities on inputs - which is why ~25 component files did not need touching. Checkboxes/radios/range/file inputs are excluded so their small focus ring survives.
+3. `.input:focus` was updated to match (it previously forced `box-shadow: none` but also reset `border-color` back to the default, so `.input` fields had no focus indication at all - now the border turns teal).
+
+- **Verified in the built CSS** (`.next/static/chunks/3598jdi-_69qx.css`): both rules compile as expected, and they sit outside `@layer utilities`, so they take precedence over the utilities they replace.
+- Unchanged on purpose: `.input-container:focus-within::after`, the 2px underline that grows across the field bottom, and `.custom-input`'s bottom border. Those are design elements flush with the field, not an outline.
+- Build passes; suite unchanged at 983 passed / 9 failed (8 pre-existing `updateUserData` + the `docxExporterReal` RTL-alignment mismatch).
+
+## Lighter Navbar/Footer + "Bond in Chemistry" Slogan - Complete
+
+Build passes; suite unchanged at 983 passed / 9 failed (8 pre-existing `updateUserData` + the `docxExporterReal` RTL-alignment mismatch).
+
+**Lighter surfaces** (the navbar and footer were the two darkest elements on the page):
+
+- `components/Navbar.jsx`: bar background `#073B40` -> `#0E666B`, matching shadow `shadow-[#073B40]/20` -> `shadow-[#073B40] -> shadow-[#0E666B]/25`; mobile panel `#0B5155` -> `#0A5A5F`.
+- `components/Footer.jsx`: gradient `from-[#073B40] to-[#0A2124]` -> `from-[#0E666B] to-[#0A4F53]` (lighter at the top, still grounding at the bottom).
+- White body text on `#0E666B` measures ~6.7:1 contrast, so readability improved rather than dropped. These are hardcoded hexes in two files - if they want it lighter still, `#0E666B` is the single knob (navbar + footer top) and `#0A5A5F`/`#0A4F53` are the darker ends.
+
+**Slogan** - "Bond in Chemistry" (matching the artwork in `logo.png` and the YouTube handle `@mr.ahmedeldesouky-bondinch1057`):
+
+- `components/brand/teacherBrand.js`: added `slogan: "Bond in Chemistry"`, set `brandLine` to the same, and moved the old Arabic hook to a new `heroLine: "الكيمياء مش حفظ معادلات... دي فهم وتفكير."` so nothing is lost.
+- `components/Footer.jsx`: the amber pull-quote is now the Latin slogan (`dir="ltr"`, `tracking-wide`) instead of the two-line Arabic hook. The Arabic platform description paragraph underneath was kept - the old pull-quote and the description had become near-duplicates.
+- `components/ui/Sidenav.jsx`: teacher-card tagline is now the Latin slogan.
+- `(userDashboard)/userDashboard/overview/page.jsx`: the eyebrow above the greeting is now the Latin slogan.
+- `components/HeroSection.jsx`: added the slogan as an amber, uppercase, wide-tracked eyebrow above the Arabic headline, which keeps the Arabic hook as the dominant line. If they want the hero headline itself replaced by the slogan, that's a one-line change.
+- All Arabic in the touched files was verified intact afterwards (no BOM, no mojibake signatures) - the edits went through Node/`.NET` file APIs rather than PowerShell `Set-Content`, which is what corrupted `StudentHome.jsx` earlier.
+
+## Glassmorphism Navbar & Footer - Complete
+
+Clarification on the previous entry: "lighter" meant **more opacity / translucent**, not a lighter hue. Both surfaces are now frosted glass over the page content. Build passes; suite unchanged at 983 passed / 9 failed.
+
+- **`components/Navbar.jsx`**: `bg-[#0E666B]` -> `bg-[#0E666B]/70` (solid) with `supports-[backdrop-filter]:bg-[#0E666B]/60` as the fallback-corrected value, plus `backdrop-blur-xl`, `backdrop-saturate-150`, a `border-b border-white/15` hairline and a soft `shadow-[#0A4F53]/20`. The mobile dropdown panel went to `bg-[#0A5A5F]/80 backdrop-blur-xl` so it matches.
+- **`components/Footer.jsx`**: `from-[#0E666B]/75 to-[#0A4F53]/85` with `backdrop-blur-xl backdrop-saturate-150`, a `border-t border-white/15` hairline and `shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]` - that inner top highlight is the detail that sells the glass edge.
+- **`components/ui/Sidenav.jsx`**: the mobile top bar (the mobile counterpart of the navbar) got the identical treatment, including the `supports-[backdrop-filter]` fallback.
+- **Verified in the compiled CSS**: `bg-[#0E666B]/70` compiles to `background-color:#0e666bb3` (70% alpha) and both `backdrop-blur-xl` and `backdrop-saturate-150` emit real `backdrop-filter` declarations - so the effect is not silently dropped.
+- **Contrast note**: the alpha sits at 60-85%, so white text keeps roughly the 6:1+ range it had when the bar was solid; the light `--background` (#F1F7F6) showing through slightly lifts the surface without hurting legibility.
+- **Expectation to set**: the navbar blurs page content scrolling under it, which is where the frosted read is strongest. The footer sits at the page end over a flat background, so it reads as *translucent* more than *frosted* - there is nothing textured behind it to blur.
+- All edits went through `.NET`/Node file APIs (no PowerShell `Set-Content`) to avoid the BOM/mojibake trap; Arabic in the touched files verified intact.
+
+## Hero Top Padding Removed - Complete
+
+Reported: extra space above the homepage hero content. Build passes.
+
+- **`components/HeroSection.jsx`**: the hero content wrapper used `py-20` (5rem top *and* bottom). Split it to `pb-20 pt-0` (plus the pre-existing `max-md:pb-4`), so the hero no longer pushes the "Bond in Chemistry" eyebrow and headline down. Bottom padding is kept so the headline/CTA still breathe against the bottom edge and the absolutely-positioned scroll cue keeps its room.
+- Checked for other sources of top spacing on the homepage and found none: `(platform)/layout.js` wraps children in a bare `overflow-x-clip` + font container with no padding, and `globals.css` sets no `padding-top`/`scroll-padding` on `html`/`body`. The `py-8`/`py-10` values on the sections below the hero are section rhythm, not top-of-page padding.
+- Note: `lg:min-h-screen` on the same wrapper means the hero fills the viewport height, so on large screens the content is now vertically centred rather than centred-plus-80px.

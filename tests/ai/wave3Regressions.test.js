@@ -3,7 +3,7 @@ import { assertDraftQuestions } from "../../lib/ai/workflows/questionGeneration/
 import "../../lib/ai/prompts";
 import { renderPrompt } from "../../lib/ai/prompts/PromptManager";
 
-// Runtime grade source is the Grade collection â€” unit suites mock it.
+// Runtime grade source is the Grade collection — unit suites mock it.
 vi.mock("../../models/Grade", () => ({
   default: {
     find: vi.fn().mockReturnValue({
