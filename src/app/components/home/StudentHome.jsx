@@ -1,0 +1,312 @@
+﻿import Link from "next/link";
+import { LuArrowLeft, LuClipboardList, LuBookOpen, LuFlaskConical } from "react-icons/lu";
+import AtomOrbit from "../brand/AtomOrbit";
+import Reveal from "../ui/Reveal";
+import ExamShowcaseCard from "./ExamShowcaseCard";
+import MetricRing from "./MetricRing";
+import SubjectCard from "./SubjectCard";
+
+/**
+ * StudentHome â€” personalized dashboard homepage for a logged-in student.
+ * Every number, exam, grade and result comes from real platform data (props).
+ */
+export default function StudentHome({ data }) {
+ const { firstName, nextExam, stats, showcase, recent, grades = [] } = data;
+ const availableCount = showcase.filter((e) => !e.hasAttempted).length;
+
+ return (
+ <div className="bg-background">
+ {/* stats (right) + welcome & next exam (left) */}
+ <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+ <div className="grid gap-4 lg:grid-cols-2">
+ {/* stats */}
+ <Reveal className="flex flex-col rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6">
+ <h2 className="flex items-center justify-between gap-2 text-lg font-black text-text-primary">
+ Ø¥ÙŠÙ‡ Ø¥Ø­ØµØ§Ø¦ÙŠØ§ØªÙƒØŸ
+ <LuClipboardList size={20} className="text-[var(--brand-teal)]" />
+ </h2>
+ <div className="mt-6 grid grid-cols-3 gap-2">
+ <MetricRing
+ value={stats.accuracy}
+ max={100}
+ center={`${stats.accuracy}%`}
+ tone="amber"
+ label="Ù†Ø³Ø¨Ø© Ø§Ù„Ù†Ø¬Ø§Ø­"
+ sub={
+ stats.totalQuestions > 0
+ ? `Ù…Ù† ${stats.totalQuestions} Ø³Ø¤Ø§Ù„`
+ : "Ù„Ø³Ù‡ Ù…Ù…ØªØ­Ù†ØªØ´"
+ }
+ />
+ <MetricRing
+ value={stats.taken}
+ max={Math.max(stats.totalAvailable, 1)}
+ center={`${stats.taken}/${stats.totalAvailable}`}
+ tone="teal"
+ label="Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª Ø§Ù„Ù…ÙƒØªÙ…Ù„Ø©"
+ sub={`Ù…Ù† Ø£ØµÙ„ ${stats.totalAvailable}`}
+ />
+ <MetricRing
+ value={stats.attendance ?? 0}
+ max={100}
+ center={`${stats.attendance ?? 0}%`}
+ tone="teal"
+ label="Ù†Ø³Ø¨Ø© Ø§Ù„Ø­Ø¶ÙˆØ±"
+ sub={
+ stats.attendanceTotal > 0
+ ? `Ù…Ù† ${stats.attendanceTotal} ${stats.attendanceTotal === 1 ? "Ø­ØµØ©" : "Ø­ØµØµ"}`
+ : "Ù„Ø§ ØªÙˆØ¬Ø¯ Ø³Ø¬Ù„Ø§Øª"
+ }
+ />
+ </div>
+ <p className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-[var(--brand-teal-soft)] px-4 py-3 text-center text-xs font-black text-[#0B5155]">
+ <AtomOrbit size={26} variant="light" animated={false} />
+ ÙƒÙ„ Ø®Ø·ÙˆØ© Ø¨ØªÙ‚Ø±Ø¨Ùƒ Ù…Ù† Ù‡Ø¯ÙÙƒ.. Ø§Ø³ØªÙ…Ø±!
+ </p>
+ </Reveal>
+
+ {/* welcome + next exam */}
+ <Reveal
+ delay={0.1}
+ className="flex flex-col rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6"
+ >
+ <div className="flex items-start justify-between gap-3">
+ <h2 className="text-lg font-black text-text-primary">
+ Ù…Ø±Ø­Ø¨Ø§Ù‹ ÙŠØ§ {firstName}! ðŸ‘‹
+ </h2>
+ </div>
+ <p className="mt-1 text-sm text-text-muted">
+ {availableCount > 0
+ ? `Ø§Ø³ØªÙ…Ø± ÙÙŠ Ø±Ø­Ù„ØªÙƒ Ù†Ø­Ùˆ Ø§Ù„ØªÙÙˆÙ‚ ÙÙŠ Ø§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¡ â€” Ø¹Ù†Ø¯Ùƒ ${availableCount} ${availableCount === 1 ? "Ø§Ø®ØªØ¨Ø§Ø±" : "Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª"} Ø¬Ø¯ÙŠØ¯`
+ : "Ø§Ø³ØªÙ…Ø± ÙÙŠ Ø±Ø­Ù„ØªÙƒ Ù†Ø­Ùˆ Ø§Ù„ØªÙÙˆÙ‚ ÙÙŠ Ø§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¡ â€” Ø±Ø§Ø¬Ø¹ Ù†ØªØ§Ø¦Ø¬Ùƒ Ø§Ù„Ø­Ø§Ù„ÙŠØ©"}
+ </p>
+
+ {nextExam ? (
+ <div className="relative mt-4 flex-1 overflow-hidden rounded-2xl bg-gradient-to-bl from-[#073B40] to-[#0B5155] p-5 text-white">
+ <div
+ aria-hidden
+ className="chem-pattern pointer-events-none absolute inset-0 opacity-40"
+ />
+ <AtomOrbit
+ size={130}
+ variant="dark"
+ animated={false}
+ className="absolute -bottom-6 -left-4 opacity-70"
+ />
+ <div className="relative">
+ <p className="inline-flex items-center gap-1.5 rounded-full bg-[#FFB81C] px-3 py-1 text-[11px] font-black text-[#3D2C00]">
+ <LuClipboardList size={12} /> Ø§Ù„Ø§Ù…ØªØ­Ø§Ù† Ø§Ù„Ù‚Ø§Ø¯Ù…
+ </p>
+ <h3 className="mt-3 line-clamp-2 text-lg font-black leading-snug">
+ {nextExam.title}
+ </h3>
+ <p className="mt-1 text-xs font-bold text-white/60">
+ {nextExam.gradeName}
+ {nextExam.questionCount > 0
+ ? ` â€¢ ${nextExam.questionCount} ${nextExam.questionCount === 1 ? "Ø³Ø¤Ø§Ù„" : "Ø£Ø³Ø¦Ù„Ø©"}`
+ : ""}
+ {nextExam.duration ? ` â€¢ ${nextExam.duration} Ø¯Ù‚ÙŠÙ‚Ø©` : ""}
+ </p>
+ <Link
+ href={`/exam/${nextExam.code}`}
+ className="mt-5 inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#FFB81C] px-6 py-2.5 text-sm font-black text-[#3D2C00] transition-colors hover:bg-[#E9A400]"
+ >
+ Ø§Ø¨Ø¯Ø£ Ø§Ù„Ø§Ù…ØªØ­Ø§Ù†
+ <LuArrowLeft size={15} />
+ </Link>
+ </div>
+ </div>
+ ) : (
+ <div className="mt-4 flex-1 rounded-2xl border border-dashed border-border bg-background p-5 text-center text-sm font-bold text-text-muted">
+ Ù„Ø§ ØªÙˆØ¬Ø¯ Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª Ø¬Ø¯ÙŠØ¯Ø© Ø­Ø§Ù„ÙŠØ§Ù‹ â€” ØªØ§Ø¨Ø¹ ØµÙÙƒ Ù„Ø£ÙŠ Ø¬Ø¯ÙŠØ¯
+ </div>
+ )}
+ </Reveal>
+ </div>
+ </section>
+
+ {/* available exams */}
+ {showcase.length > 0 && (
+ <section className="mx-auto max-w-7xl px-4 pb-2 sm:px-6 lg:px-8">
+ <div className="mb-5 flex items-center justify-between gap-3">
+ <h2 className="flex items-center gap-2 text-xl font-black text-text-primary sm:text-2xl">
+ <LuClipboardList size={22} className="text-[var(--brand-teal)]" />
+ Ø§Ù„Ø§Ù…ØªØ­Ø§Ù†Ø§Øª Ø§Ù„Ù…ØªØ§Ø­Ø©
+ </h2>
+ <Link
+ href="/userDashboard/exams"
+ className="inline-flex items-center gap-1 text-sm font-black text-[var(--brand-navy)] hover:underline"
+ >
+ Ø¹Ø±Ø¶ Ø§Ù„ÙƒÙ„
+ <LuArrowLeft size={15} />
+ </Link>
+ </div>
+ <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
+ {showcase.map((exam, i) => (
+ <ExamShowcaseCard
+ key={exam._id}
+ exam={exam}
+ featured={showcase.length === 3 && i === 1}
+ />
+ ))}
+ </div>
+ </section>
+ )}
+
+ {/* subjects */}
+ {grades.length > 0 && (
+ <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+ <div className="mb-5 flex items-center justify-between gap-3">
+ <h2 className="flex items-center gap-2 text-xl font-black text-text-primary sm:text-2xl">
+ <LuBookOpen size={22} className="text-[var(--brand-teal)]" />
+ Ø§Ù„Ù…ÙˆØ§Ø¯ Ø§Ù„Ø¯Ø±Ø§Ø³ÙŠØ©
+ </h2>
+ <Link
+ href="/userDashboard/grades"
+ className="inline-flex items-center gap-1 text-sm font-black text-[var(--brand-navy)] hover:underline"
+ >
+ Ø¹Ø±Ø¶ Ø§Ù„ÙƒÙ„
+ <LuArrowLeft size={15} />
+ </Link>
+ </div>
+ <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+ {grades.slice(0, 4).map((g) => (
+ <SubjectCard key={g.id} grade={g} />
+ ))}
+ </div>
+ </section>
+ )}
+
+ {/* results (right) + quote (left) */}
+ <section className="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+ <div className="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
+ {recent.length > 0 ? (
+ <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+ <div className="flex items-center justify-between px-5 pt-5 sm:px-6">
+ <h2 className="flex items-center gap-2 text-lg font-black text-text-primary">
+ Ø¢Ø®Ø± Ù†ØªØ§Ø¦Ø¬Ùƒ
+ <LuClipboardList size={19} className="text-[var(--brand-teal)]" />
+ </h2>
+ </div>
+ <div className="overflow-x-auto p-3 sm:p-4">
+ <table className="w-full min-w-[480px] text-sm">
+ <thead>
+ <tr className="border-b border-border text-right text-[11px] font-black text-text-muted">
+ <th className="px-3 py-2.5 font-black">Ø§Ù„Ø§Ù…ØªØ­Ø§Ù†</th>
+ <th className="px-3 py-2.5 font-black">Ø§Ù„ØªØ§Ø±ÙŠØ®</th>
+ <th className="px-3 py-2.5 font-black">Ø§Ù„Ø¯Ø±Ø¬Ø©</th>
+ <th className="px-3 py-2.5 font-black">Ø§Ù„Ø­Ø§Ù„Ø©</th>
+ </tr>
+ </thead>
+ <tbody className="divide-y divide-[var(--border)]">
+ {recent.map((r) => (
+ <tr key={r._id} className="text-right">
+ <td className="max-w-[220px] truncate px-3 py-3 font-bold text-text-primary">
+ <Link
+ href={`/exam/${r.code}`}
+ className="hover:text-[var(--brand-navy)] hover:underline"
+ >
+ {r.title}
+ </Link>
+ </td>
+ <td className="whitespace-nowrap px-3 py-3 text-xs font-bold text-text-muted">
+ {r.date}
+ </td>
+ <td className="px-3 py-3">
+ <span
+ dir="ltr"
+ className="font-black tabular-nums text-[#7A5200] "
+ >
+ {r.percent}%
+ </span>
+ </td>
+ <td className="px-3 py-3">
+ <span
+ className={`rounded-full px-2.5 py-1 text-[11px] font-black ${
+ r.percent >= 50
+ ? "bg-[var(--brand-teal-soft)] text-[#0E7C7E] "
+ : "bg-[var(--brand-amber-soft)] text-[#8A5A00] "
+ }`}
+ >
+ {r.percent >= 50 ? "Ù†Ø§Ø¬Ø­" : "Ù…Ø­ØªØ§Ø¬ Ù…Ø±Ø§Ø¬Ø¹Ø©"}
+ </span>
+ </td>
+ </tr>
+ ))}
+ </tbody>
+ </table>
+ </div>
+ <div className="flex justify-start px-5 pb-5 sm:px-6">
+ <Link
+ href="/userDashboard/overview"
+ className="inline-flex items-center gap-1.5 rounded-xl bg-[#073B40] px-5 py-2.5 text-xs font-black text-white transition-colors hover:bg-[#0B5155] "
+ >
+ Ø¹Ø±Ø¶ Ø¬Ù…ÙŠØ¹ Ø§Ù„Ù†ØªØ§Ø¦Ø¬
+ <LuArrowLeft size={13} />
+ </Link>
+ </div>
+ </div>
+ ) : (
+ <div className="flex items-center justify-center rounded-2xl border border-dashed border-border bg-card p-10 text-center text-sm font-bold text-text-muted">
+ Ù„Ø§ ØªÙˆØ¬Ø¯ Ù†ØªØ§Ø¦Ø¬ Ø¨Ø¹Ø¯ â€” Ø§Ø¨Ø¯Ø£ Ø£ÙˆÙ„ Ø§Ø®ØªØ¨Ø§Ø± Ù„ÙŠÙƒ ÙˆØ¸Ù‡Ø± Ù…Ø³ØªÙˆØ§Ùƒ Ù‡Ù†Ø§
+ </div>
+ )}
+
+ {/* quote */}
+ <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-bl from-[#073B40] to-[#0B5155] p-6 text-white sm:p-7">
+ <div
+ aria-hidden
+ className="chem-pattern pointer-events-none absolute inset-0 opacity-40"
+ />
+ <div className="relative flex justify-center">
+ <AtomOrbit size={130} variant="dark" animated />
+ </div>
+ <div className="relative mt-6">
+ <p className="text-xl font-black leading-relaxed">
+ Ø§Ù„Ù†Ø¬Ø§Ø­ Ù…Ø´ ØµØ¯ÙØ©..
+ <br />
+ Ø¯Ù‡ Ù†ØªÙŠØ¬Ø© Ù…Ø¬Ù‡ÙˆØ¯ Ù…Ø³ØªÙ…Ø±.
+ </p>
+ <p className="mt-3 text-sm font-bold text-[#FFB81C]">
+ Ø£. Ø£Ø­Ù…Ø¯ Ø§Ù„Ø¯Ø³ÙˆÙ‚ÙŠ
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ {/* CTA band */}
+ <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+ <Reveal scroll>
+ <div className="relative overflow-hidden rounded-2xl border border-[#073B40] bg-gradient-to-bl from-[#073B40] to-[#0B5155] px-6 py-10 text-white sm:px-10">
+ <div className="chem-pattern pointer-events-none absolute inset-0 opacity-40" aria-hidden />
+ <div
+ aria-hidden
+ className="pointer-events-none absolute -bottom-8 -left-8 hidden opacity-70 sm:block"
+ >
+ <AtomOrbit size={140} variant="dark" animated />
+ </div>
+ <div className="relative flex flex-col items-center gap-5 text-center lg:flex-row lg:justify-between lg:text-right">
+ <div className="max-w-2xl">
+ <h2 className="text-2xl font-black leading-snug text-[#FFB81C] sm:text-3xl">
+ Ø¬Ø§Ù‡Ø² ØªØ¨Ø¯Ø£ Ø±Ø­Ù„ØªÙƒ Ù„Ù„ØªÙÙˆÙ‚ ÙÙŠ Ø§Ù„ÙƒÙŠÙ…ÙŠØ§Ø¡ØŸ
+ </h2>
+ <p className="mt-2 text-sm leading-relaxed text-white/80 sm:text-base">
+ Ø§Ø®ØªØ¨Ø± Ù…Ø³ØªÙˆØ§Ùƒ ÙÙŠ Ø¯Ù‚Ø§ÙŠÙ‚ ÙˆØ§Ø¹Ø±Ù Ø¨Ø§Ù„Ø¸Ø¨Ø· Ù…Ø­ØªØ§Ø¬ ØªØ­Ø³Ù‘Ù† Ø¥ÙŠÙ‡ â€” ÙƒÙ„ Ù…Ø§
+ ØªØ¯Ù‚Ù‘Ù‚ØŒ Ø¯Ø±Ø¬ØªÙƒ Ø£Ø¹Ù„Ù‰.
+ </p>
+ </div>
+ <Link
+ href={nextExam ? `/exam/${nextExam.code}` : "/userDashboard/exams"}
+ className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#FFB81C] px-8 py-3.5 text-sm font-black text-[#3D2C00] shadow-md transition-all hover:bg-[#E9A400] active:scale-[0.98]"
+ >
+ {nextExam ? "Ø§Ø¨Ø¯Ø£ Ø§Ù„Ø§Ù…ØªØ­Ø§Ù†" : "ØªØµÙØ­ Ø§Ù„Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª"}
+ <LuFlaskConical size={16} />
+ </Link>
+ </div>
+ </div>
+ </Reveal>
+ </section>
+ </div>
+ );
+}

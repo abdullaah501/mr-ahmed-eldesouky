@@ -1,0 +1,604 @@
+@import "tailwindcss";
+
+
+/* ============================================================
+   AHMED EL DESOUKY — CHEMISTRY IDENTITY DESIGN TOKENS
+   Deep Teal #073B40 | Dark Teal #0B5155 | Amber #FFB81C | Cyan #159A9C
+   Arabic-first, RTL. Chemistry accents are subtle overlays only.
+   ============================================================ */
+
+:root {
+  /* ---- Fonts (injected by next/font, fallbacks below) ---- */
+  --font-sans: var(--font-poppins), var(--font-cairo), system-ui, sans-serif;
+  --font-arabic: var(--font-cairo), var(--font-poppins), system-ui, sans-serif;
+  --font-amin: var(--font-cairo), sans-serif;
+
+  /* ---- BRAND — single source of truth ---- */
+  --brand-navy: #073b40;
+  --brand-navy-hover: #052c30;
+  --brand-navy-light: #0b5155;
+  --brand-navy-soft: #dfedea;
+  --brand-navy-border: #bcd6d1;
+  --brand-teal: #159a9c;
+  --brand-teal-hover: #0f7e80;
+  --brand-teal-soft: #ddf1f1;
+  --brand-teal-border: #a9dcdc;
+  --brand-amber: #ffb81c;
+  --brand-amber-hover: #e9a400;
+  --brand-amber-soft: #fff3d9;
+  --brand-amber-border: #f2dda8;
+  --brand-amber-ink: #3d2c00;
+
+  /* Neutral */
+  --neutral-charcoal: #152d30;
+  --neutral-slate: #718487;
+  --neutral-soft: #dce8e6;
+  --neutral-offwhite: #f1f7f6;
+  --neutral-white: #ffffff;
+
+  /* ---- LIGHT MODE ---- */
+  --background: #f1f7f6;
+  --foreground: #152d30;
+
+  --primary: #073b40;
+  --primary-hover: #052c30;
+  --primary-navy: #073b40;
+  --primary-teal: #159a9c;
+  --primary-blue: #073b40; /* legacy alias → deep teal */
+  --primary-purple: #159a9c; /* legacy alias → cyan */
+
+  --secondary: #dfedea;
+  --secondary-foreground: #073b40;
+
+  --muted: #718487;
+  --muted-foreground: #9db4b1;
+
+  --card: #ffffff;
+  --card-foreground: #152d30;
+  --elevated: #ffffff;
+
+  --border: #dce8e6;
+  --border-strong: #b9cfcb;
+  --input: #dce8e6;
+  --focus: #0e7c7e;
+  --ring: rgba(21, 154, 156, 0.22);
+
+  --success: #159a9c;
+  --warning: #ffb81c;
+  --danger: #ef4444;
+  --info: #159a9c;
+
+  --sidebar-from: #073b40;
+  --sidebar-to: #0b5155;
+  --sidebar-border: rgba(255, 255, 255, 0.12);
+
+  --navbar-bg: rgba(241, 247, 246, 0.88);
+  --navbar-border: rgba(220, 232, 230, 0.9);
+
+  --text-primary: #152d30;
+  --text-secondary: #2c4a4e;
+  --text-muted: #718487;
+  --text-inverted: #ffffff;
+
+  --btn-bg: #073b40;
+  --btn-hover: #052c30;
+  --btn-text: #ffffff;
+
+  --link: #0b5155;
+  --link-hover: #073b40;
+
+  --selection-bg: #ffb81c;
+  --selection-text: #102f33;
+  --overlay: rgba(16, 47, 51, 0.5);
+
+  --shadow-sm-val: 0 1px 2px 0 rgba(7, 59, 64, 0.06);
+  --shadow-md-val:
+    0 4px 16px -2px rgba(7, 59, 64, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg-val:
+    0 12px 32px -8px rgba(7, 59, 64, 0.14),
+    0 4px 12px -2px rgba(0, 0, 0, 0.06);
+  --shadow-brand-val: 0 8px 24px -4px rgba(7, 59, 64, 0.28);
+
+  /* Legacy fallbacks */
+  --primary-green-val: #073b40;
+  --primary-blue-val: #073b40;
+  --primary-black-val: #152d30;
+  --primary-gray-val: #718487;
+  --primary-purple-val: #159a9c;
+  --dark-purple-val: #0f7e80;
+  --dark-blue-val: #052c30;
+  --light-purple-val: #dfedea;
+  --input-color-val: #073b40;
+  --lighter-purple-val: #ddf1f1;
+  --light-blue-val: #dfedea;
+
+  /* Radius system */
+  --radius-sm: 0.75rem; /* 12px */
+  --radius-md: 1rem; /* 16px */
+  --radius-lg: 1.5rem; /* 24px = rounded-2xl = default card */
+  --radius-xl: 1.75rem; /* 28px = rounded-3xl = feature */
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-navy: var(--primary-navy);
+  --color-primary-teal: var(--primary-teal);
+  --color-primary-blue: var(--primary-blue);
+  --color-primary-purple: var(--primary-purple);
+
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-amber: var(--brand-amber);
+  --color-brand-navy-soft: var(--brand-navy-soft);
+  --color-brand-teal-soft: var(--brand-teal-soft);
+  --color-brand-amber-soft: var(--brand-amber-soft);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-elevated: var(--elevated);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-focus: var(--focus);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --color-sidebar-from: var(--sidebar-from);
+  --color-sidebar-to: var(--sidebar-to);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-navbar-bg: var(--navbar-bg);
+  --color-navbar-border: var(--navbar-border);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverted: var(--text-inverted);
+
+  --color-btn-bg: var(--btn-bg);
+  --color-btn-hover: var(--btn-hover);
+  --color-btn-text: var(--btn-text);
+
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+
+  --color-selection: var(--selection-bg);
+  --color-selection-text: var(--selection-text);
+  --color-overlay: var(--overlay);
+
+  --shadow-sm: var(--shadow-sm-val);
+  --shadow-md: var(--shadow-md-val);
+  --shadow-lg: var(--shadow-lg-val);
+  --shadow-brand: var(--shadow-brand-val);
+
+  --color-primary-green: var(--primary-green-val);
+  --color-primary-black: var(--primary-black-val);
+  --color-primary-gray: var(--primary-gray-val);
+  --color-dark-purple: var(--dark-purple-val);
+  --color-dark-blue: var(--dark-blue-val);
+  --color-light-purple: var(--light-purple-val);
+  --color-input-color: var(--input-color-val);
+  --color-lighter-purple: var(--lighter-purple-val);
+  --color-light-blue: var(--light-blue-val);
+
+  --font-sans: var(--font-sans);
+  --font-arabic: var(--font-arabic);
+  --font-amin: var(--font-amin);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+/* ===== Base ===== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background: var(--background);
+}
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family:
+    var(--font-amin), var(--font-arabic), var(--font-sans), system-ui,
+    sans-serif;
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Keyboard users get a visible ring; mouse/touch clicks stay clean. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ===== Reusable utility patterns ===== */
+.input {
+  @apply p-3 bg-card border-2 rounded-xl outline-none w-full transition-colors;
+  border-color: var(--border);
+}
+.input:focus {
+  outline: none !important;
+  border-color: var(--border);
+  box-shadow: none !important;
+}
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--secondary);
+}
+
+.file-drop {
+  @apply flex items-center justify-center border-2 border-dashed rounded-2xl p-6 cursor-pointer transition-colors;
+  border-color: var(--border-strong);
+  background: var(--card);
+}
+.file-drop:hover {
+  border-color: var(--brand-navy);
+}
+
+/* Buttons — unified */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm sm:text-[15px] transition-all duration-200 active:scale-[0.98];
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 2px solid var(--btn-bg);
+  box-shadow: var(--shadow-sm-val);
+}
+.btn-primary:hover {
+  background: var(--btn-hover);
+  border-color: var(--btn-hover);
+  box-shadow: var(--shadow-brand-val);
+}
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-teal:focus-visible,
+.btn-amber:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.btn-amber {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm sm:text-[15px] transition-all duration-200 active:scale-[0.98];
+  background: var(--brand-amber);
+  color: var(--brand-amber-ink);
+  border: 2px solid var(--brand-amber);
+  box-shadow: var(--shadow-sm-val);
+}
+.btn-amber:hover {
+  background: var(--brand-amber-hover);
+  border-color: var(--brand-amber-hover);
+  box-shadow: 0 8px 24px -4px rgba(255, 184, 28, 0.45);
+}
+.btn-amber:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm sm:text-[15px] transition-all duration-200 active:scale-[0.98];
+  background: var(--card);
+  color: var(--brand-navy);
+  border: 2px solid var(--border);
+}
+.btn-secondary:hover {
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+  background: var(--brand-navy-soft);
+}
+
+.btn-teal {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-200 active:scale-[0.98];
+  background: var(--brand-teal);
+  color: white;
+  border: 2px solid var(--brand-teal);
+}
+.btn-teal:hover {
+  background: var(--brand-teal-hover);
+  border-color: var(--brand-teal-hover);
+}
+
+/* Legacy button helpers mapped to new tokens so old markup still looks correct */
+.outlined-btn {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-bold text-sm sm:text-base border-2 bg-transparent transition-all duration-200 active:scale-95;
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+}
+.outlined-btn:hover {
+  background: var(--brand-navy);
+  color: white;
+}
+.inlined-btn {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm sm:text-base border-2 transition-all duration-200 active:scale-95;
+  background: var(--brand-navy);
+  color: white;
+  border-color: var(--brand-navy);
+}
+.inlined-btn:hover {
+  background: transparent;
+  color: var(--brand-navy);
+}
+
+/* Cards — one consistent treatment */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm-val);
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-md-val);
+  border-color: var(--border-strong);
+}
+.card-feature {
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md-val);
+}
+
+/* Badges */
+.badge {
+  @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold;
+}
+.badge-navy {
+  background: var(--brand-navy-soft);
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-navy-border);
+}
+.badge-teal {
+  background: var(--brand-teal-soft);
+  color: #047857;
+  border: 1px solid var(--brand-teal-border);
+}
+.badge-success {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+.badge-warning {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+.badge-danger {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+.badge-info {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+.badge-amber {
+  background: var(--brand-amber-soft);
+  color: #7a5200;
+  border: 1px solid var(--brand-amber-border);
+}
+.badge-neutral {
+  background: var(--secondary);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* Floating label helpers — retained for compatibility */
+.input-container {
+  position: relative;
+}
+.input-container::after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  right: 0;
+  transition: 0.4s ease;
+  background-color: var(--brand-navy);
+}
+.input-container:focus-within::after {
+  width: 100%;
+}
+.input-label {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+.input-container:focus-within .input-label {
+  transform: translateY(-1.75rem);
+  font-size: 0.875rem;
+  color: var(--brand-navy);
+}
+.custom-input {
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+  padding: 0.5rem 1rem;
+  outline: none;
+  background: transparent;
+  position: relative;
+  z-index: 10;
+}
+.animated-bar {
+  width: 0;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: var(--brand-navy);
+}
+.animate {
+  animation: grow-shrink 0.9s ease forwards;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes grow-shrink {
+  0% {
+    width: 0;
+    right: 0;
+    left: auto;
+  }
+  60% {
+    width: 100%;
+    right: 0;
+    left: auto;
+  }
+  61% {
+    right: auto;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 0;
+    right: auto;
+  }
+}
+
+/* Exam-specific timer colors */
+.timer-normal {
+  color: var(--brand-navy);
+}
+.timer-warning {
+  color: #d97706;
+}
+.timer-critical {
+  color: #dc2626;
+}
+
+/* Utility */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Marquee divider — RTL-aware, pauses for reduced motion (see below). */
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+.marquee-track {
+  animation: marquee-rtl 28s linear infinite;
+}
+
+/* Respect users who prefer reduced motion — calm exam experience. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ===== RTL — Arabic first ===== */
+html[dir="rtl"] body {
+  text-align: right;
+  letter-spacing: 0 !important;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  text-align: right;
+}
+
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="tel"],
+html[dir="rtl"] input[inputmode="numeric"],
+html[dir="rtl"] .ltr-field {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Directional arrows auto-flip in RTL (← becomes → visually) */
+html[dir="rtl"] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+/* Subtle chemistry pattern — periodic-table-inspired grid dots */
+.chem-pattern {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.14) 1px,
+    transparent 1.5px
+  );
+  background-size: 26px 26px;
+}
+.chem-pattern-dark {
+  background-image: radial-gradient(
+    circle,
+    rgba(7, 59, 64, 0.1) 1px,
+    transparent 1.5px
+  );
+  background-size: 26px 26px;
+}
