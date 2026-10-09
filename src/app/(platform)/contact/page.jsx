@@ -6,7 +6,7 @@ import { LuMail } from "react-icons/lu";
 export const metadata = {
   title: "تواصل معنا | أ. أحمد الدسوقي",
   description:
-    "تواصل مع منصة أ. أحمد الدسوقي مدرس الكيمياء لأي استفسار أو دعم.",
+    "تواصل مع منصة أ. أحمد الدسوقي بوند الكيمياء لأي استفسار أو دعم.",
   alternates: {
     canonical: "https://mr-ahmed-eldesouky.vercel.app/contact",
   },

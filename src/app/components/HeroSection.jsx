@@ -17,7 +17,7 @@ export default async function HeroSection() {
           {/* Mobile: portrait crop, framed on the teacher */}
           <Image
             src="/hero-mobile.png"
-            alt="أ. أحمد الدسوقي — مدرس الكيمياء"
+            alt="أ. أحمد الدسوقي — بوند الكيمياء"
             fill
             priority
             sizes="100vw"
@@ -26,7 +26,7 @@ export default async function HeroSection() {
           {/* Desktop: landscape crop */}
           <Image
             src="/hero-desk.png"
-            alt="أ. أحمد الدسوقي — مدرس الكيمياء"
+            alt="أ. أحمد الدسوقي — بوند الكيمياء"
             fill
             priority
             sizes="100vw"
@@ -34,7 +34,10 @@ export default async function HeroSection() {
           />
           {/* petrol atmosphere + readability scrim (vertical on mobile, horizontal on desktop) */}
           <div className="absolute inset-0 -z-10 " />
-          <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+          <div
+            className="pointer-events-none absolute inset-0 -z-10"
+            aria-hidden
+          >
             <div className="chem-pattern absolute inset-0 opacity-50" />
             <div className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full bg-[#159A9C]/25 blur-3xl" />
             <div className="absolute -bottom-40 -right-16 h-[380px] w-[380px] rounded-full bg-[#FFB81C]/10 blur-3xl" />
